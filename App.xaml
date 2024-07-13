@@ -1,0 +1,27 @@
+﻿<Application x:Class="WPF_Fancy_CRUD.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:WPF_Fancy_CRUD"
+             Startup="IniciarAplicacion">
+    <Application.Resources>
+
+        <!--
+            En un proyecto nuevo la propiedad StarupUri tiene el valor: MainWindow.xaml.
+            La propiedad StartupUri podría tener el valor "Views/LoginView.xaml", lo que haría que se cargue siempre la vista de login.
+            En este proyecto el LoginView.xaml es una ventana independiente, no es un control de usuario, una página, etc, que se pueda mostrar en un contenedor de otra ventana. Repito, es una ventana en sí misma.
+
+            Generalmente sólo hay una vista principal de tipo ventana, que sería ApplicationStart (ésta no es una vista, es un código de evento que se define en el code behind App.xaml.cs). Las demás vistas, incluyendo la vista de inicio de sesión LoginView.xaml, deberían crearse como controles de usuario y muestrarse en algún contenedor de la vista de la ventana principal.
+
+            Como digo, esto no sucede exactamente así en este proyecto, pero sólo con la ventana de inicio de sesión. El resto de vistas sí son controles de usuario. Según el tutorial al que pertenece este aplicativo, esto se hizo así porque se quería que la ventana de inicio de sesión tuviera unos estilos muy distintos que los del resto de la aplicación, por lo cual fue necesario crear dos ventanas distintas: la de login y la del resto de la app.
+        -->
+
+
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Assets/Styles/ColorStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Styles/ButtonStyles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+
+    </Application.Resources>
+</Application>
