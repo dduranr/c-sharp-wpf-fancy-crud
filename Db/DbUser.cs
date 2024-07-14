@@ -60,7 +60,7 @@ namespace WPF_Fancy_CRUD.Db
         /// <returns></returns>
         public UserModel GetByUsuario(string usuario)
         {
-            UserModel user = null;
+            UserModel? user = null;
             using (var connection = Conexion())
             using (var command = new SqlCommand())
             {

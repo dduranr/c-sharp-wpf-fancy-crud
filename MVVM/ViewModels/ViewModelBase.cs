@@ -8,9 +8,9 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
     public abstract class ViewModelBase : INotifyPropertyChanged
     {
         /// <summary>
-        /// La interfaz INotifyPropertyChanged tiene un único evento (PropertyChanged) que notifica a los clientes que una propiedad ha cambiado y que deben volver a evaluar sus valores.
+        /// La interfaz INotifyPropertyChanged tiene un único evento (PropertyChanged) que notifica a los clientes que una propiedad ha cambiado y que deben volver a evaluar sus valores. El tutorial no lo indica, pero agregué ?
         /// </summary>
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
 
         /// <summary>
         /// Método para generar evento para cuando una propiedad haya cambiado

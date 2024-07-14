@@ -17,7 +17,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// <summary>
         /// Se define campo de tipo predicate para determinar si la acción se puede ejecutar o no. Este delegado permite que el control se habilite/deshabilite en función de si se puede ejecutar su comando.
         /// </summary>
-        private readonly Predicate<object> _canExecuteAction;
+        private readonly Predicate<object>? _canExecuteAction;
 
         /// <summary>
         /// Constructor sin predicado (canExecuteAction). Ya que no todos los comandos deben ser validados para verificar si debe ejecutarse la acción.
