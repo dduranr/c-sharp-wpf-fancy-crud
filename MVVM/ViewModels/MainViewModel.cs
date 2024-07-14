@@ -1,19 +1,8 @@
 ﻿using FontAwesome.Sharp;
-using Microsoft.VisualBasic.Logging;
-using System.ComponentModel;
-using System.Diagnostics;
-using System.Drawing;
-using System.Threading.Channels;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Forms;
 using System.Windows.Input;
-using System.Windows.Markup;
 using WPF_Fancy_CRUD.Db;
 using WPF_Fancy_CRUD.MVVM.Models;
 using WPF_Fancy_CRUD.MVVM.Models.Interfaces;
-using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace WPF_Fancy_CRUD.MVVM.ViewModels
 {
@@ -26,19 +15,20 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         private IDbUser dbUser;
 
         // Propiedades privadas
-        private UserModel _usuario = new UserModel {Id="",Usuario="",Contrasena="",Nombre="",Apellido1="",Apellido2="",Email="",Image=""};
+        private UserModel _usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "" };
         private ViewModelBase _modeloDeVista = new HomeViewModel();
         private string _titulo = "";
         private IconChar _icono;
 
         /// <summary>
         /// Propiedades públicas (Usuario, ModeloDeVista, Titulo e Icono)
-        ///     El método OnPropertyChanged usado en estas propiedades es crucial para implementar MVVM. MVVM separa la lógica de la aplicación (Model), la interfaz de usuario (View) y el puente entre ellas (ViewModel). WPF usa un mecanismo llamado "data binding" para actualizar automáticamente la UI cuando sea que cambien los datos subyacentes.
-        ///     La clase ViewModelBase implementa la interfaz INotifyPropertyChanged. Esta interfaz define un evento llamado PropertyChanged que se dispara cuando cambia el valor de una propiedad dentro de cualquier ViewModel que herede de ViewModelBase, como es la presente clase MainViewModel. El método OnPropertyChanged en ViewModelBase es responsable de notificar al sistema de "data binding" que el valor de una propiedad ha cambiado. Toma el nombre de la propiedad (como una cadena) como argumento. Con esto, el sistema "data binding" actualiza automáticamente los elementos UI vinculados a la propiedad en cuestión (controles en la vista).
+        ///     Todas están bindeadas en la vista MainView.xaml.
+        ///     WPF usa un mecanismo llamado "data binding" para actualizar automáticamente la UI cuando sea que cambien los datos subyacentes (propiedades en code-behind o controlador o view model).
+        ///     La clase ViewModelBase implementa la interfaz INotifyPropertyChanged. Esta interfaz define un evento llamado PropertyChanged que se dispara cuando cambia el valor de una propiedad dentro de cualquier ViewModel que herede de ViewModelBase, como es la presente clase MainViewModel. El método OnPropertyChanged en ViewModelBase es responsable de notificar al sistema de "data binding" que el valor de una propiedad ha cambiado. En el view model este método toma el nombre de la propiedad (como una cadena) como argumento. Con esto, el sistema "data binding" actualiza automáticamente los elementos UI vinculados a la propiedad en cuestión.
         /// </summary>
         public UserModel Usuario
         {
-            get {return _usuario;}
+            get { return _usuario; }
             set
             {
                 _usuario = value;
@@ -74,32 +64,32 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             }
         }
 
-        // COMANDOS. Cada vez que se ejecuta un comando se crea una nueva instancia en la propiedad vista secundaria actual. Esto implica que se pierdan/borren todos los cambios hechos en una sección del admin, por ejemplo si se pone texto en un campo de texto, ese texto se borra al cambiar de sección.
-
-        // Comando 1. Para mostrar la vista de inicio
+        // COMANDOS
         public ICommand ShowHomeViewCommand { get; }
-        // Comando 2. Para mostrar la vista de clientes
         public ICommand ShowCustomerViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
 
         /// <summary>
-        /// Es posible que la clase UserModel tenga un constructor de tipo de referencia que admita valores null. Esto permitiría que Usuario se asigne técnicamente, pero que se siga considerando null, ya que sus propiedades internas podrían no estar inicializadas.
+        /// Este es el modelo de vista de la home del aplicativo.
         /// </summary>
         public MainViewModel()
         {
             dbUser = new DbUser();
-            Usuario = new UserModel {Id="",Usuario="",Contrasena="",Nombre="",Apellido1="",Apellido2="",Email="",Image=""};
+            Usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "" };
 
-            // Se inicializan comandos (en estos casos no hay razón para poner reglas de validación para mostrar las vistas)
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecuteShowUserViewCommand);
 
-            // Se establece la vista predeterminada
+            // Ejecutamos un comando, el que sea, con el fin de establecer una vista predeterminada
             ExecuteShowHomeViewCommand(null);
             LoadCurrentUserData();
         }
 
+        /// <summary>
+        /// Los siguientes métodos privados son las funciones Execute que se ejecutan cuando un comando sea llamado. Como se puede apreciar, cada vez que se ejecuta un comando se crea una nueva instancia del modelo de vista en cuestión, esto implica que cualquier cosa que se haya hecho en una vista (y no se haya guardado), por ejemplo poner un texto en un TextBox, se pierde o borra. De tal manera que si el usuario regresa a esa misma sección del aplicativo obviamente no verá los cambios que puso.
+        /// TODO. Para solucionar el problema mencionado aquí arriba pueden hacerse dos cosas: 1) automáticamente guardar los datos que el usuario haya puesto y sólo después saltar a la otra vista a la que el usuario quiere ir, o 2) ver la forma de hacer que la info no guardada se guarde en algo así como datos de sesión
+        /// </summary>
         private void ExecuteShowHomeViewCommand(object? obj)
         {
             ModeloDeVista = new HomeViewModel();
@@ -118,7 +108,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         {
             ModeloDeVista = new UserViewModel();
             Titulo = "Usuarios";
-            Icono = IconChar.UserGroup;
+            Icono = IconChar.UsersGear;
         }
 
         private void LoadCurrentUserData()

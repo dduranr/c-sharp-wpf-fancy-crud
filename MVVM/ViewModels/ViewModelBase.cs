@@ -20,6 +20,5 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
-
     }
 }

@@ -74,7 +74,7 @@ namespace WPF_Fancy_CRUD.Db
                     {
                         user = new UserModel()
                         {
-                            Id = reader[0].ToString(),
+                            Id = (int)reader[0],
                             Usuario = reader[1].ToString(),
                             Contrasena = string.Empty,
                             Nombre = reader[3].ToString(),

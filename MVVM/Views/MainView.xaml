@@ -33,8 +33,7 @@
         </DataTemplate>
     </Window.Resources>
 
-    <Border CornerRadius="10"
-            BorderThickness="1">
+    <Border CornerRadius="10" BorderThickness="1">
 
         <Border.BorderBrush>
             <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -54,8 +53,7 @@
             </Grid.ColumnDefinitions>
 
             <!-- Menú de navegación -->
-            <Border CornerRadius="10,0,0,10"
-                    Grid.Column="0">
+            <Border CornerRadius="10,0,0,10" Grid.Column="0">
 
                 <Border.Background>
                     <LinearGradientBrush StartPoint="0,0" EndPoint="1,0.7">
@@ -67,9 +65,7 @@
                 <StackPanel>
 
                     <!-- Logo -->
-                    <StackPanel Orientation="Horizontal"
-                                Height="35"
-                                Margin="15,25,0,40">
+                    <StackPanel Orientation="Horizontal" Height="35" Margin="15,25,0,40">
 
                         <Image Source="/WPF-Fancy-CRUD;Component/Assets/Images/logo.png" Height="30"/>
                         <TextBlock Text="RJ CODE"
@@ -225,9 +221,7 @@
                         </Grid.ColumnDefinitions>
 
                         <!-- Título -->
-                        <StackPanel Grid.Column="0"
-                                    Orientation="Horizontal"
-                                    VerticalAlignment="Center">
+                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
                             <fa:IconImage Icon="{Binding Icono}"
                                           Height="20"
                                           Width="20"
@@ -289,9 +283,7 @@
                     </Grid>
 
                     <!-- CONTENIDO / Child views -->
-                    <ContentControl Content="{Binding Vista}"
-                                    Grid.Row="2"
-                                    Margin="25">
+                    <ContentControl Content="{Binding ModeloDeVista}" Grid.Row="2" Margin="25">
                     </ContentControl>
 
                 </Grid>

@@ -10,9 +10,9 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
     public class LoginViewModel : ViewModelBase
     {
         // Se definen propiedades para enlazar la vista con el modelo de vista
-        private string _usuario;
-        private SecureString _contrasena;
-        private string _mensajeError;
+        private string _usuario = "";
+        private SecureString _contrasena = new SecureString();
+        private string _mensajeError = "";
         private bool _vistaEsVisible = true;
 
         private IDbUser iDbUser; // Ésta no es una propiedad sino la interfaz del usuario
@@ -25,8 +25,8 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             {
                 _usuario = value;
                 // El 1er argumento debe ser el nombre de la propiedad. Se puede poner a mano o usando nameof:
-                //      "Usuario"
-                //      nameof(Usuario)
+                //      1. "Usuario"
+                //      2. nameof(Usuario)
                 OnPropertyChanged(nameof(Usuario));
             }
         }
@@ -73,6 +73,8 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             // Al ViewModelCommand() se le envían 2 argumentos: un delegado que contenga la función a ejecutar cuando se dispare el evento, y el predicado, para ver si se puede ejecutar el comando, es decir, la función que verificará si las reglas se cumplen para activar/desactivar el control (por ejemplo, se activará el botón para ingresar hasta que los campos estén completados). Sin embargo, existen comandos que no necesitan verificar reglas para activar controles, como el de recuperar password que simplemente es un link que dirige al formulario para recuperar contraseña.
             LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
             RecoverContrasenaCommand = new ViewModelCommand(p => ExecuteRecoverContrasenaCommand("", ""));
+            ShowContrasenaCommand = new ViewModelCommand(p => ExecuteRecoverContrasenaCommand("", ""));
+            RememberContrasenaCommand = new ViewModelCommand(p => ExecuteRecoverContrasenaCommand("", ""));
         }
 
         // Delegados. Estos métodos son los que se delegan a los comandos. El argumento "object obj" es opcional.
@@ -85,6 +87,12 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             return true;
         }
 
+        /// <summary>
+        /// Thread.CurrentPrincipal Obtiene o establece la entidad de seguridad actual del subproceso (de la seguridad basada en roles).
+        /// GenericPrincipal Representa una entidad de seguridad genérica.
+        /// GenericIdentity: Representa un usuario genérico.
+        /// </summary>
+        /// <param name="obj"></param>
         private void ExecuteLoginCommand(object obj)
         {
             var isValidUser = iDbUser.AuthenticateUser(new NetworkCredential(Usuario, Contrasena));
