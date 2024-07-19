@@ -11,17 +11,12 @@ namespace WPF_Fancy_CRUD.Db
     /// </summary>
     public class DbUser : DbBase, IDbUser
     {
-        public void Add(UserModel userModel)
-        {
-            throw new NotImplementedException();
-        }
 
         /// <summary>
-        /// Este método implementa el método de validación de usuario para iniciar sesión.
+        /// Este método sirve para autenticar al usuario. Como parámetros se ponen usuario y contraseña. Dado que en la vista y modelo de vista la contraseña es tipo SecureString, entonces se usa la clase NetworkCredential ya que admite en el constructor una cadena tipo SecureString, y a partir de éste es posible obtener la contraseña en texto plano.
         /// </summary>
         /// <param name="credential"></param>
         /// <returns>Devuelve un booleano indicando si la autenticación fue exitosa o no.</returns>
-        /// <exception cref="NotImplementedException"></exception>
         public bool AuthenticateUser(NetworkCredential credential)
         {
             bool validUser;
@@ -38,27 +33,49 @@ namespace WPF_Fancy_CRUD.Db
             return validUser;
         }
 
+        /// <summary>
+        /// Este método agrega un usuario
+        /// </summary>
+        /// <param name="userModel"></param>
+        public void Add(UserModel userModel)
+        {
+            throw new NotImplementedException();
+        }
+
+        /// <summary>
+        /// Este método edita un usuario
+        /// </summary>
+        /// <param name="userModel"></param>
         public void Edit(UserModel userModel)
         {
             throw new NotImplementedException();
         }
 
-        public IEnumerable<UserModel> GetAll()
+        /// <summary>
+        /// Este método elimina un usuario
+        /// </summary>
+        /// <param name="id"></param>
+        public void Remove(int id)
         {
             throw new NotImplementedException();
         }
 
+        /// <summary>
+        /// Este método obtiene un usuario por ID
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
         public UserModel GetById(int id)
         {
             throw new NotImplementedException();
         }
 
         /// <summary>
-        /// Este método se encarga de recuperar de la base de datos el usuario coincidente con el nombre de usuario pasado como parámetro.
+        /// Este método obtiene un usuario por username
         /// </summary>
         /// <param name="usuario"></param>
-        /// <returns></returns>
-        public UserModel GetByUsuario(string usuario)
+        /// <returns>Si tiene éxito devuelve un objeto tipo UserModel, de lo contrario devuelve null.</returns>
+        public UserModel? GetByUsuario(string usuario)
         {
             UserModel? user = null;
             using (var connection = Conexion())
@@ -74,13 +91,13 @@ namespace WPF_Fancy_CRUD.Db
                     {
                         user = new UserModel()
                         {
-                            Id = (int)reader[0],
-                            Usuario = reader[1].ToString(),
+                            Id = reader.GetInt32(0), // Use GetInt32 for integers
+                            Usuario = reader[1]?.ToString() ?? "No disponible",
                             Contrasena = string.Empty,
-                            Nombre = reader[3].ToString(),
-                            Apellido1 = reader[4].ToString(),
+                            Nombre = reader[3]?.ToString() ?? "No disponible",
+                            Apellido1 = reader[4]?.ToString() ?? "No disponible",
                             Apellido2 = reader[5].ToString(),
-                            Email = reader[6].ToString(),
+                            Email = reader[6]?.ToString() ?? "No disponible",
                             Image = reader[7].ToString(),
                         };
                     }
@@ -89,9 +106,14 @@ namespace WPF_Fancy_CRUD.Db
             return user;
         }
 
-        public void Remove(int id)
+        /// <summary>
+        /// Este método obtiene todos los usuario
+        /// </summary>
+        /// <returns></returns>
+        public IEnumerable<UserModel> GetAll()
         {
             throw new NotImplementedException();
         }
+
     }
 }

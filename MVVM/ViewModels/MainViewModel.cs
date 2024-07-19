@@ -119,8 +119,10 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             if (Thread.CurrentPrincipal != null && Thread.CurrentPrincipal.Identity != null && Thread.CurrentPrincipal.Identity.Name != null)
             {
                 var user = dbUser.GetByUsuario(Thread.CurrentPrincipal.Identity.Name);
-                Usuario.Usuario = user.Usuario;
-                Usuario.Nombre = $"Bienvenido, {user.Nombre} {user.Apellido1}";
+                string NombreUsuario = user?.Usuario ?? "No disponible";
+                string ApelleidoUsuario = user?.Apellido1 ?? "No disponible";
+                Usuario.Usuario = NombreUsuario;
+                Usuario.Nombre = $"Bienvenido, {NombreUsuario} {ApelleidoUsuario}";
                 Usuario.Image = "/ruta/a/la/imagen.jpg";
             }
             else

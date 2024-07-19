@@ -10,17 +10,38 @@ namespace WPF_Fancy_CRUD
     {
         protected void IniciarAplicacion(object sender, StartupEventArgs e)
         {
-            var loginView = new LoginView();
-            loginView.Show();
-            loginView.IsVisibleChanged += (s, ev) =>
+            try
             {
-                if (loginView.IsVisible == false && loginView.IsLoaded)
+                var loginView = new LoginView();
+                loginView.Show();
+                loginView.IsVisibleChanged += (s, ev) =>
                 {
-                    var mainView = new MainView();
-                    mainView.Show();
-                    loginView.Close();
-                }
-            };
+                    if (loginView.IsVisible == false && loginView.IsLoaded)
+                    {
+                        var mainView = new MainView();
+                        mainView.Show();
+                        loginView.Close();
+                    }
+                };
+
+
+
+                //loginView.Closed += (s, ev) =>
+                //{
+                //    var mainView = new MainView();
+                //    mainView.Show();
+                //};
+
+
+            }
+            catch (InvalidOperationException ex)
+            {
+                MessageBox.Show("InvalidOperationException: " + ex.Message);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Excepción general: " + ex.Message);
+            }
         }
     }
 

@@ -77,16 +77,6 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             RememberContrasenaCommand = new ViewModelCommand(p => ExecuteRecoverContrasenaCommand("", ""));
         }
 
-        // Delegados. Estos métodos son los que se delegan a los comandos. El argumento "object obj" es opcional.
-        private bool CanExecuteLoginCommand(object obj)
-        {
-            if (string.IsNullOrWhiteSpace(Usuario) || Usuario.Length < 3 || Contrasena == null || Contrasena.Length < 3)
-            {
-                return false;
-            }
-            return true;
-        }
-
         /// <summary>
         /// Thread.CurrentPrincipal Obtiene o establece la entidad de seguridad actual del subproceso (de la seguridad basada en roles).
         /// GenericPrincipal Representa una entidad de seguridad genérica.
@@ -107,11 +97,20 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
                 MensajeError = "* El usuario y/o contraseña no son válidos.";
             }
         }
+
+        // Delegados. Estos métodos son los que se delegan a los comandos. El argumento "object obj" es opcional.
+        private bool CanExecuteLoginCommand(object obj)
+        {
+            if (string.IsNullOrWhiteSpace(Usuario) || Usuario.Length < 3 || Contrasena == null || Contrasena.Length < 3)
+            {
+                return false;
+            }
+            return true;
+        }
+
         private void ExecuteRecoverContrasenaCommand(string usuario, string email)
         {
             throw new NotImplementedException();
         }
-
-
     }
 }
