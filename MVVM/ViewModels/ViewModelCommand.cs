@@ -1,4 +1,5 @@
-﻿using System.Windows.Input;
+﻿using System.Diagnostics;
+using System.Windows.Input;
 
 namespace WPF_Fancy_CRUD.MVVM.ViewModels
 {
@@ -26,7 +27,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         public ViewModelCommand(Action<object> executeAction)
         {
             _executeAction = executeAction;
-            //_canExecuteAction = null;
+            _canExecuteAction = null;
         }
 
         /// <summary>
@@ -54,13 +55,15 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// <summary>
         /// Este evento forma parte de la implementación de ICommand.
         /// Este método es el encargado de ejecutar la acción del control en cuestión.
+        /// Algo pasa con este método que al parecer parameter SIEMPRE es null, y aún así ejecuta el comando que se pasa mediante parameter. Por ejemplo, en LoginViewModel.cs está esta línea:
+        ///     LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
+        /// Cuando intento iniciar sesión con credenciales correctas e incorrectas, en cualquier caso el parameter es null. Lo raro es que funciona el login.
         /// </summary>
-        public void Execute(object? parameter)
+
+        //public void Execute(object parameter)
+        public void Execute(object parameter)
         {
-            if (parameter != null)
-            {
-                _executeAction(parameter);
-            }
+            _executeAction(parameter);
         }
 
         /// <summary>
