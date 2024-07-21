@@ -18,8 +18,11 @@
 
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Assets/Styles/ColorStyles.xaml"/>
                 <ResourceDictionary Source="Assets/Styles/ButtonStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Styles/CheckboxStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Styles/ColorStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Styles/DatagridStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Styles/TextboxStyles.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 

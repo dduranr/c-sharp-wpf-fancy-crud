@@ -1,10 +1,10 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Security;
 using System.Security.Principal;
 using System.Windows.Input;
 using WPF_Fancy_CRUD.Db;
 using WPF_Fancy_CRUD.MVVM.Models.Interfaces;
-using System.Diagnostics;
 
 namespace WPF_Fancy_CRUD.MVVM.ViewModels
 {

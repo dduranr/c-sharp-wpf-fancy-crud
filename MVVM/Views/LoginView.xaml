@@ -100,7 +100,7 @@
                         FontFamily="Montserrat"
                         Cursor="Hand"
                         Grid.Column="1"
-                        Click="btnMinimize_Click">
+                        Click="BtnMinimize_Click">
                         <!--
                             WPF no permite personalizar el hover de los botones. Por tanto, se elimina la propiedad Background del botón y se elimina la plantilla por defecto del botón:
                         -->
@@ -134,7 +134,7 @@
                         FontFamily="Montserrat"
                         Cursor="Hand"
                         Grid.Column="2"
-                        Click="btnClose_Click">
+                        Click="BtnClose_Click">
                         <!--
                             WPF no permite personalizar el hover de los botones. Por tanto, se elimina la propiedad Background del botón y se elimina la plantilla por defecto del botón:
                         -->
