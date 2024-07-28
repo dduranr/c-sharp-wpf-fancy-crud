@@ -174,7 +174,7 @@
                     <Image Source="/WPF-Fancy-CRUD;Component/Assets/Images/logo.png"
                            Width="100"
                            Height="100"/>
-                    
+
                     <TextBlock Text="Durán"
                                Foreground="White"
                                FontSize="25"
@@ -219,7 +219,7 @@
                         <TextBox.Background>
                             <ImageBrush ImageSource="/WPF-Fancy-CRUD;Component/Assets/Images/user-icon.png" Stretch="None" AlignmentX="Left"/>
                         </TextBox.Background>
-                        
+
                     </TextBox>
 
                     <TextBlock Text="Contraseña"

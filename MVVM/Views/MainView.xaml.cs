@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Runtime.InteropServices;
 using System.Windows;
 using System.Windows.Input;
@@ -121,6 +122,46 @@ namespace WPF_Fancy_CRUD.MVVM.Views
                 }
             }
         }
+
+        /// <summary>
+        /// Este método es el listener del menú de ajustes, cuando se da click a alguna de sus opciones
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuItemAjustes_Click(object sender, EventArgs e)
+        {
+            if (sender != null)
+            {
+                string seleccionRaw = sender.ToString() ?? "";
+                string[] seleccion = seleccionRaw.Split("System.Windows.Controls.Button: ");
+
+                if (seleccion.Length == 2)
+                {
+                    switch (seleccion[1])
+                    {
+                        case "Ajustes":
+                            Trace.WriteLine("Seleccionaste AJUSTES");
+                            break;
+                        case "Mi cuenta":
+                            Trace.WriteLine("Seleccionaste Mi cuenta");
+                            break;
+                        case "Ayuda":
+                            Trace.WriteLine("Seleccionaste Ayuda");
+                            break;
+                        case "Cerrar sesión":
+                            Trace.WriteLine("Seleccionaste Cerrar sesión");
+                            var loginView = new LoginView();
+                            loginView.Show();
+                            this.Close();
+                            break;
+                    }
+                }
+            }
+        }
+
+
+
+
     }
 
     public class Member

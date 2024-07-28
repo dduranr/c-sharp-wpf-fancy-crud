@@ -1,6 +1,14 @@
 ﻿using System.Windows;
 using WPF_Fancy_CRUD.MVVM.Views;
 
+// SIGO AQUÍ
+// SIGO AQUÍ
+// SIGO AQUÍ
+//          Documentar bien este código
+//          En MainView.xaml.cs intentar cambiar a true la visibilidad de loginView al cerrar el mainView
+
+
+
 namespace WPF_Fancy_CRUD
 {
     /// <summary>
@@ -10,38 +18,23 @@ namespace WPF_Fancy_CRUD
     {
         protected void IniciarAplicacion(object sender, StartupEventArgs e)
         {
-            try
+            var loginView = new LoginView();
+            loginView.Show();
+
+            // Usando una expresión lambda se adjunta un manejador de eventos para que nosotros hagamos algo en caso que cambie la visibilidad de loginView
+            loginView.IsVisibleChanged += (s, ev) =>
             {
-                var loginView = new LoginView();
-                loginView.Show();
-                loginView.IsVisibleChanged += (s, ev) =>
+                if (loginView.IsVisible == false && loginView.IsLoaded)
                 {
-                    if (loginView.IsVisible == false && loginView.IsLoaded)
-                    {
-                        var mainView = new MainView();
-                        mainView.Show();
-                        loginView.Close();
-                    }
-                };
-
-
-
-                //loginView.Closed += (s, ev) =>
-                //{
-                //    var mainView = new MainView();
-                //    mainView.Show();
-                //};
-
-
-            }
-            catch (InvalidOperationException ex)
-            {
-                MessageBox.Show("InvalidOperationException: " + ex.Message);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("Excepción general: " + ex.Message);
-            }
+                    var mainView = new MainView();
+                    mainView.Show();
+                    loginView.Close();
+                }
+                else
+                {
+                    MessageBox.Show("Se muestra el loginView. Por tanto, deberíamos ocultar el dashboard");
+                }
+            };
         }
     }
 
