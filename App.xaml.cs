@@ -18,6 +18,15 @@ namespace WPF_Fancy_CRUD
     {
         protected void IniciarAplicacion(object sender, StartupEventArgs e)
         {
+            //var loginView = new LoginView();
+            //loginView.Show();
+            //loginView.Closed += (s, ev) =>
+            //{
+            //    var mainView = new MainView();
+            //    mainView.Show();
+            //};
+
+
             var loginView = new LoginView();
             loginView.Show();
 
@@ -29,10 +38,6 @@ namespace WPF_Fancy_CRUD
                     var mainView = new MainView();
                     mainView.Show();
                     loginView.Close();
-                }
-                else
-                {
-                    MessageBox.Show("Se muestra el loginView. Por tanto, deberíamos ocultar el dashboard");
                 }
             };
         }

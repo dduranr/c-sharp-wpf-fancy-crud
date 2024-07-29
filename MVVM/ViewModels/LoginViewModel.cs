@@ -86,7 +86,6 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// <param name="obj"></param>
         private void ExecuteLoginCommand(object obj)
         {
-            Trace.WriteLine("Se lee ExecuteLoginCommand");
             var isValidUser = iDbUser.AuthenticateUser(new NetworkCredential(Usuario, Contrasena));
             // Si el usuario es válido vamos a registrar y guardar el nombre de usuario para después mostrar sus datos en la vista principal. Para esto se usará la propiedad Thread.CurrentPrincipal. Ésta permite establecer la identidad del usuario que ejecuta el subproceso actual. El 2do argumento de GenericPrincipal es para trabajar los roles. Es decir, en Thread.CurrentPrincipal se guarda el usuario de quien inicia sesión, ya con ese dato guardado en memoria, más adelante se podrá recuperar de la BD la info del usuario logueado, por ejemplo en el método LoadCurrentUserData de MainViewModel.
             if (isValidUser)

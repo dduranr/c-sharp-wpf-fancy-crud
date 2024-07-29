@@ -15,7 +15,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         private IDbUser dbUser;
 
         // Propiedades privadas
-        private UserModel _usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "" };
+        private UserModel _usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "", Rol = "" };
         private ViewModelBase _modeloDeVista = new HomeViewModel();
         private string _titulo = "";
         private IconChar _icono;
@@ -75,7 +75,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         public MainViewModel()
         {
             dbUser = new DbUser();
-            Usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "" };
+            Usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "", Rol = "" };
 
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
@@ -119,11 +119,15 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             if (Thread.CurrentPrincipal != null && Thread.CurrentPrincipal.Identity != null && Thread.CurrentPrincipal.Identity.Name != null)
             {
                 var user = dbUser.GetByUsuario(Thread.CurrentPrincipal.Identity.Name);
-                string NombreUsuario = user?.Usuario ?? "No disponible";
-                string ApelleidoUsuario = user?.Apellido1 ?? "No disponible";
-                Usuario.Usuario = NombreUsuario;
-                Usuario.Nombre = $"Bienvenido, {NombreUsuario} {ApelleidoUsuario}";
-                Usuario.Image = "/ruta/a/la/imagen.jpg";
+
+                if (user != null)
+                {
+                    //string NombreUsuario = user?.Usuario ?? "No disponible";
+                    Usuario.Usuario = user.Usuario;
+                    Usuario.Nombre = $"{user.Nombre} {user.Apellido1}";
+                    Usuario.Image = "/ruta/a/la/imagen.jpg";
+                    Usuario.Rol = user.Rol;
+                }
             }
             else
             {

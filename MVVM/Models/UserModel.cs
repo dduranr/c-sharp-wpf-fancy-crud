@@ -11,5 +11,6 @@
         public string? Apellido2 { get; set; }
         public required string Email { get; set; }
         public string? Image { get; set; }
+        public required string Rol { get; set; }
     }
 }

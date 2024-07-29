@@ -67,29 +67,29 @@ namespace WPF_Fancy_CRUD.MVVM.Views
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-        {
-            WindowInteropHelper helper = new WindowInteropHelper(this);
-            SendMessage(helper.Handle, 161, 2, 0);
-        }
+        //private void pnlControlBar_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        //{
+        //    WindowInteropHelper helper = new WindowInteropHelper(this);
+        //    SendMessage(helper.Handle, 161, 2, 0);
+        //}
 
 
-        private void BtnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
+        //private void BtnClose_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Application.Current.Shutdown();
+        //}
 
-        private void BtnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            this.WindowState = WindowState.Minimized;
-        }
+        //private void BtnMinimize_Click(object sender, RoutedEventArgs e)
+        //{
+        //    this.WindowState = WindowState.Minimized;
+        //}
 
-        private void BtnMaximize_Click(object sender, RoutedEventArgs e)
-        {
-            if (this.WindowState == WindowState.Normal)
-                this.WindowState = WindowState.Maximized;
-            else this.WindowState = WindowState.Normal;
-        }
+        //private void BtnMaximize_Click(object sender, RoutedEventArgs e)
+        //{
+        //    if (this.WindowState == WindowState.Normal)
+        //        this.WindowState = WindowState.Maximized;
+        //    else this.WindowState = WindowState.Normal;
+        //}
 
 
 
@@ -149,19 +149,24 @@ namespace WPF_Fancy_CRUD.MVVM.Views
                             Trace.WriteLine("Seleccionaste Ayuda");
                             break;
                         case "Cerrar sesión":
-                            Trace.WriteLine("Seleccionaste Cerrar sesión");
-                            var loginView = new LoginView();
-                            loginView.Show();
-                            this.Close();
+                            CerrarSesion();
                             break;
                     }
                 }
             }
         }
 
+        private void LinkLogout_Click(object sender, EventArgs e)
+        {
+            CerrarSesion();
+        }
 
-
-
+        private void CerrarSesion()
+        {
+            var loginView = new LoginView();
+            loginView.Show();
+            this.Close();
+        }
     }
 
     public class Member

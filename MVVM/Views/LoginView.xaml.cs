@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
 
 namespace WPF_Fancy_CRUD.MVVM.Views
@@ -14,6 +15,7 @@ namespace WPF_Fancy_CRUD.MVVM.Views
         public LoginView()
         {
             InitializeComponent();
+            txtUser.Focus();
         }
 
         /// <summary>
@@ -36,10 +38,6 @@ namespace WPF_Fancy_CRUD.MVVM.Views
         private void BtnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
-        }
-        private void btnLogin_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("Iniciando sesión...");
         }
 
         /// <summary>

@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using System.Net;
+using System.Runtime.InteropServices.Marshalling;
 using WPF_Fancy_CRUD.MVVM.Models;
 using WPF_Fancy_CRUD.MVVM.Models.Interfaces;
 
@@ -89,6 +90,10 @@ namespace WPF_Fancy_CRUD.Db
                 {
                     if (reader.Read())
                     {
+                        //TODO: Armar helpers class, uno de ellos será un método que devuelva la misma cadena que se le pasa como parámetro, pero con la 1ra letra en mayúscula.
+                        string rol = reader[10]?.ToString() ?? "No disponible";
+                        string RolFormateado = char.ToUpper(rol[0]) + rol.Substring(1);
+
                         user = new UserModel()
                         {
                             Id = reader.GetInt32(0), // Use GetInt32 for integers
@@ -99,6 +104,7 @@ namespace WPF_Fancy_CRUD.Db
                             Apellido2 = reader[5].ToString(),
                             Email = reader[6]?.ToString() ?? "No disponible",
                             Image = reader[7].ToString(),
+                            Rol = RolFormateado,
                         };
                     }
                 }
