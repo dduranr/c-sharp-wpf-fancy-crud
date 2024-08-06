@@ -3,8 +3,8 @@
                     xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp">
 
-
-
+    
+    
     <!--Menu button icon-->
     <Style x:Key="menuButtonIconORIGINAL" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
@@ -13,6 +13,8 @@
         <Setter Property="Margin" Value="35,0,20,0"/>
     </Style>
 
+    
+    
     <!--Menu button text-->
     <Style x:Key="menuButtonText" TargetType="TextBlock">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=RadioButton}}"/>
@@ -22,8 +24,38 @@
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+    
+    
+    <!-- Control bar button -->
+    <Style x:Key="controlButton" TargetType="Button">
+        <!--Normal button style-->
+        <Setter Property="Width" Value="35"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource plainTextColor3}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <!-- Se vincula el color de fondo del borde, al color de fondo del botón -->
+                    <Border Background="{TemplateBinding Background}"
+                        CornerRadius="4">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Para establecer estilos en determinados eventos (hover, activate, etc) se usan los disparadores (triggers) -->
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="{DynamicResource panelActiveColor}"/>
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self }}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
 
 
+    
     <!-- Control button icon -->
     <Style x:Key="controlButtonIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
@@ -32,6 +64,36 @@
     </Style>
 
 
+
+    <!-- Icon button -->
+    <Style x:Key="iconButton" TargetType="Button">
+        <!--Normal button style-->
+        <Setter Property="Cursor" Value="Hand"/>
+        <Setter Property="Width" Value="25"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Foreground" Value="{DynamicResource plainTextColor1}"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="Button">
+                    <!-- Se vincula el color de fondo del borde, al color de fondo del botón -->
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                    </Border>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+
+        <!-- Para establecer estilos en determinados eventos (hover, activate, etc) se usan los disparadores (triggers) -->
+        <Style.Triggers>
+            <!--Button Style on hover-->
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Foreground" Value="{Binding Path=Tag, RelativeSource={RelativeSource Self }}"/>
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    
     <!-- Icon button icon -->
     <Style x:Key="iconButtonIcon" TargetType="fa:IconImage">
         <Setter Property="Foreground" Value="{Binding Path=Foreground, RelativeSource={RelativeSource AncestorType=Button}}"/>
@@ -41,22 +103,7 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    <!--topButton-->
     <Style x:Key="topButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#6e7783"/>
@@ -82,6 +129,9 @@
 
     </Style>
 
+
+
+    <!--menuButton-->
     <Style x:Key="menuButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#d0c0ff"/>
@@ -101,12 +151,19 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#7b5cd6"/>
+                <Setter Property="Background" Value="#4000ff"/>
+                <Setter Property="Foreground" Value="#ffffff"/>
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#4000ff"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
+
+
+    <!--menuButtonIcon-->
     <Style x:Key="menuButtonIcon" TargetType="Icon:PackIconMaterial">
         <Setter Property="Width" Value="15"/>
         <Setter Property="Height" Value="15"/>
@@ -115,6 +172,8 @@
     </Style>
 
 
+
+    <!--addButton-->
     <Style x:Key="addButton" TargetType="Button">
         <Setter Property="Background" Value="#6741d9"/>
         <Setter Property="Foreground" Value="#ffffff"/>
@@ -143,6 +202,9 @@
         </Style.Triggers>
     </Style>
 
+
+
+    <!--tabButton-->
     <Style x:Key="tabButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#121518"/>
@@ -170,6 +232,8 @@
     </Style>
 
 
+
+    <!--pagingButton-->
     <Style x:Key="pagingButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="Foreground" Value="#6c7682"/>
@@ -194,12 +258,18 @@
         </Style.Triggers>
     </Style>
 
+
+
+    <!--pagingButtonIcon-->
     <Style x:Key="pagingButtonIcon" TargetType="Icon:PackIconMaterial">
         <Setter Property="Width" Value="10"/>
         <Setter Property="Height" Value="10"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
     </Style>
 
+
+
+    <!--gridEditButton-->
     <Style x:Key="gridEditButton" TargetType="Button">
         <Setter Property="Background" Value="#512da8"/>
         <Setter Property="BorderBrush" Value="#4a418e"/>
@@ -223,6 +293,9 @@
         </Style.Triggers>
     </Style>
 
+
+
+    <!--gridRemoveButton-->
     <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
         <Setter Property="Background" Value="#d32f2f"/>
         <Setter Property="BorderBrush" Value="#b71c1c"/>

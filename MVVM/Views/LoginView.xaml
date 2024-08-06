@@ -37,29 +37,28 @@
         Puesto que no es posible personalizar borde con esquinas redondeadas en la ventana, por eso se usa una etiqueta Border. Ésta permite poner el color de background y el color de borde exterior mediante las propiedades Background y BorderBrush. Sin embargo, aquí las quitamos porque ambas cosas las queremos muy personalizadas (con gradientes), y para eso usamos otras etiquetas.
     -->
 
-    <Border CornerRadius="35"
-            BorderThickness="5">
+    <Border CornerRadius="35" BorderThickness="5">
 
         <Border.Background>
             <ImageBrush ImageSource="/WPF-Fancy-CRUD;Component/Assets/Images/back-image.jpg"/>
         </Border.Background>
 
-        <Border CornerRadius="30"
-                BorderThickness="5"
-                Opacity="0.85">
+        <Border CornerRadius="30" BorderThickness="5" Opacity="0.85">
 
+            <!--Gradiente para el borde-->
             <Border.BorderBrush>
                 <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                    <GradientStop Color="{StaticResource winBorderColor1}" Offset="0"></GradientStop>
-                    <GradientStop Color="{StaticResource winBorderColor2}" Offset="0.75"></GradientStop>
-                    <GradientStop Color="{StaticResource winBorderColor3}" Offset="1"></GradientStop>
+                    <GradientStop Color="{StaticResource primaryColor1}" Offset="0"></GradientStop>
+                    <GradientStop Color="{StaticResource primaryColor2}" Offset="0.75"></GradientStop>
+                    <GradientStop Color="{StaticResource grayColor1}" Offset="1"></GradientStop>
                 </LinearGradientBrush>
             </Border.BorderBrush>
 
+            <!--Gradiente para el background-->
             <Border.Background>
                 <LinearGradientBrush StartPoint="0,1" EndPoint="1,0">
-                    <GradientStop Color="{StaticResource primaryBackColor1}" Offset="0"></GradientStop>
-                    <GradientStop Color="{StaticResource primaryBackColor2}" Offset="0.75"></GradientStop>
+                    <GradientStop Color="{StaticResource primaryColor2}" Offset="0"></GradientStop>
+                    <GradientStop Color="Black" Offset="0.75"></GradientStop>
                 </LinearGradientBrush>
             </Border.Background>
 
@@ -106,11 +105,11 @@
                         -->
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#28AEED"/>
+                                <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush1}"/>
                                 <!-- Se declara un disparador para que ejecute algo (en este caso cambio de color de fondo del botón) cuando se dé un MouseOver -->
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#278BEF"/>
+                                        <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush2}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -140,11 +139,11 @@
                         -->
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="{StaticResource color4}"/>
+                                <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush1}"/>
                                 <!-- Se declara un disparador para que ejecute algo (en este caso cambio de color de fondo del botón) cuando se dé un MouseOver -->
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="{StaticResource color4}"/>
+                                        <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush2}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -163,17 +162,11 @@
                         </Button.Template>
                     </Button>
 
-
                 </Grid>
 
-                <StackPanel Width="250"
-                            Grid.Row="2"
-                            Orientation="Vertical"
-                            Margin="0,35,0,0">
+                <StackPanel Width="250" Grid.Row="2" Orientation="Vertical" Margin="0,35,0,0">
 
-                    <Image Source="/WPF-Fancy-CRUD;Component/Assets/Images/logo.png"
-                           Width="100"
-                           Height="100"/>
+                    <Image Source="/WPF-Fancy-CRUD;Component/Assets/Images/logo.png" Width="100" Height="100"/>
 
                     <TextBlock Text="Durán"
                                Foreground="White"
@@ -250,7 +243,7 @@
                         Creamos un TextBlock que mostrará los posibles errores al iniciar sesión
                     -->
                     <TextBlock Text="{Binding MensajeError}"
-                               Foreground="{StaticResource color4}"
+                               Foreground="{StaticResource secondarySolidColorBrush1}"
                                FontSize="12"
                                FontWeight="Medium"
                                FontFamily="Montserrat"
@@ -271,11 +264,11 @@
                         -->
                         <Button.Style>
                             <Style TargetType="Button">
-                                <Setter Property="Background" Value="#462ad8"/>
+                                <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush1}"/>
                                 <!-- Se declara un disparador para que ejecute algo (en este caso cambio de color de fondo del botón) cuando se dé un MouseOver -->
                                 <Style.Triggers>
                                     <Trigger Property="IsMouseOver" Value="True">
-                                        <Setter Property="Background" Value="#28aeed"/>
+                                        <Setter Property="Background" Value="{StaticResource secondarySolidColorBrush2}"/>
                                     </Trigger>
                                 </Style.Triggers>
                             </Style>
@@ -295,9 +288,7 @@
                         </Button.Template>
                     </Button>
 
-                    <StackPanel Orientation="Horizontal"
-                                HorizontalAlignment="Center"
-                                Margin="0,15,0,0">
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,15,0,0">
                         <TextBlock Text="¿Olvidaste contraseña?"
                                    Foreground="DarkGray"
                                    FontSize="12"

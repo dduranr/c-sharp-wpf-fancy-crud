@@ -7,8 +7,8 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <TextBlock Foreground="White" FontSize="20">
+    <Grid Background="{StaticResource whiteSolidColorBrush1}">
+        <TextBlock Foreground="{StaticResource primarySolidColorBrush1}">
             Contenido de la sección HOME<LineBreak/>
             Contenido de la sección HOME<LineBreak/>
             Contenido de la sección HOME

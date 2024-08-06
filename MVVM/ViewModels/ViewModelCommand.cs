@@ -60,8 +60,12 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// </summary>
 
         //public void Execute(object parameter)
-        public void Execute(object parameter)
+        public void Execute(object? parameter)
         {
+            //if (parameter != null)
+            //{
+            //    _executeAction(parameter);
+            //}
             _executeAction(parameter);
         }
 

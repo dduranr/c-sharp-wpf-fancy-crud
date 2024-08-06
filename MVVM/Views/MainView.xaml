@@ -37,7 +37,7 @@
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
-    <Border Background="#eff2f7" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
+    <Border Background="{StaticResource whiteSolidColorBrush1}" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">
         <Grid>
 
             <Grid.ColumnDefinitions>
@@ -45,35 +45,22 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
-            <!--Left menu-->
+            <!--Left column-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="auto"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--Menú ajustes-->
-                <Grid Margin="20 28 0 35" Height="60" VerticalAlignment="Top">
-                    <Grid.Effect>
-                        <!--Sombra de cada uno de los 3 puntillos-->
-                        <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
-                    </Grid.Effect>
-                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
-                        <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False" Margin="10">
-                            <StackPanel Width="150">
-                                <Button Click="MenuItemAjustes_Click" Content="Ajustes"/>
-                                <Button Click="MenuItemAjustes_Click" Content="Mi cuenta"/>
-                                <Button Click="MenuItemAjustes_Click" Content="Ayuda"/>
-                                <Separator/>
-                                <Button Click="MenuItemAjustes_Click" Content="Cerrar sesión"/>
-                            </StackPanel>
-                        </materialDesign:PopupBox>
-                    </StackPanel>
+                <!--Espacio vacío esquina superior izq-->
+                <Grid Grid.Row="0"  Margin="20 28 0 35" Height="60" VerticalAlignment="Top">
+                    <TextBlock Text="" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                 </Grid>
 
-                <Border Grid.Row="1" Background="#623ed0" CornerRadius="0 50 0 30">
+                <!--Sidebar izq-->
+                <Border Grid.Row="1" Background="{StaticResource primarySolidColorBrush1}" CornerRadius="0 50 0 30">
                     <DockPanel>
-                        <!--Menú logo-->
+                        <!--Menú logo/imagen perfil-->
                         <Border Width="80" Height="80" Padding="3" Background="White" CornerRadius="100" DockPanel.Dock="Top" HorizontalAlignment="Left" Margin="20 -30 0 0">
                             <Ellipse>
                                 <Ellipse.Fill>
@@ -82,41 +69,41 @@
                             </Ellipse>
                         </Border>
 
-                        <TextBlock Text="{Binding Usuario.Rol}" Foreground="White" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
+                        <TextBlock Text="{Binding Usuario.Rol}" Foreground="{StaticResource whiteSolidColorBrush1}" FontSize="22" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center" Margin="5 25 0 10"/>
 
-                        <TextBlock Text="{Binding Usuario.Nombre}" Foreground="#d0bfff" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
+                        <TextBlock Text="{Binding Usuario.Nombre}" Foreground="{StaticResource whiteSolidColorBrush2}" FontSize="14" FontWeight="SemiBold" DockPanel.Dock="Top" TextAlignment="Center"/>
 
                         <!--Menu separator-->
-                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="#7e5fdc"/>
+                        <Separator Margin="25" DockPanel.Dock="Top" Height="0.8" Background="{StaticResource whiteSolidColorBrush1}"/>
 
                         <!--Menú buttons-->
                         <StackPanel DockPanel.Dock="Top">
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding ShowHomeViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="HomeVariant" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Dashboard"/>
+                                    <TextBlock Text="Home"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding ShowCustomerViewCommand}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CalendarClock" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Events"/>
+                                    <Icon:PackIconMaterial Kind="Account" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Clientes"/>
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}" Background="#7b5cd6" Foreground="White">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding ShowUserViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="AccountMultipleOutline" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Members"/>
+                                    <TextBlock Text="Usuarios"/>
                                 </StackPanel>
                             </Button>
 
                             <Button Style="{StaticResource menuButton}">
                                 <StackPanel Orientation="Horizontal">
-                                    <Icon:PackIconMaterial Kind="CashMultiple" Style="{StaticResource menuButtonIcon}"/>
-                                    <TextBlock Text="Wallet"/>
+                                    <Icon:PackIconMaterial Kind="Cart" Style="{StaticResource menuButtonIcon}"/>
+                                    <TextBlock Text="Productos"/>
                                 </StackPanel>
                             </Button>
 
@@ -134,163 +121,99 @@
 
             </Grid>
 
-            <!--Main section-->
-            <Grid Grid.Column="1" Margin="30 20 20 20">
+            <!--Right column-->
+            <Grid Grid.Column="1" Background="{StaticResource whiteSolidColorBrush1}">
+
                 <Grid.RowDefinitions>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition  Height="auto"/>
-                    <RowDefinition  Height="*"/>
-                    <RowDefinition  Height="auto"/>
+                    <!-- Barra de control -->
+                    <RowDefinition Height="25"/>
+                    <!-- Header / Título -->
+                    <RowDefinition Height="35"/>
+                    <!-- Contenido / Child views-->
+                    <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
 
-                <!--Search textbox-->
-                <!-- El siguiente binding incluía este IsEmpty que no existe: Binding ElementName=txtSearch, Path=Text.IsEmpty, Converter...-->
-                <Grid Width="300" HorizontalAlignment="Left">
-                    <TextBlock Margin="20 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Search here..." Visibility="{Binding ElementName=txtSearch, Path=Text, Converter={StaticResource BooleanToVisibility}}"/>
+                <!-- Barra de control -->
+                <StackPanel x:Name="pnlControlBar"
+                                Grid.Row="0"
+                                Orientation="Horizontal"
+                                FlowDirection="RightToLeft"
+                                Background="Transparent"
+                                Margin="0,0,5,0"
+                                MouseLeftButtonDown="PnlControlBar_MouseLeftButtonDown"
+                                MouseEnter="PnlControlBar_MouseEnter">
 
-                    <TextBox x:Name="txtSearch" Style="{StaticResource textboxSearch}"/>
+                    <Button x:Name="btnClose"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource secondarySolidColorBrush1}"
+                                Click="BtnClose_Click">
+                        <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
 
-                    <Icon:PackIconMaterial Kind="Magnify" Width="15" Height="15" VerticalAlignment="Center" Margin="0 0 15 0" Foreground="#b0b9c6" HorizontalAlignment="Right"/>
-                </Grid>
+                    <Button x:Name="btnMaximize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource secondarySolidColorBrush1}"
+                                Click="BtnMaximize_Click">
+                        <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
 
-                <!--Top buttons-->
-                <Button Style="{StaticResource topButton}" Margin="0 0 20 0"  HorizontalAlignment="Right" Background="#dcdcdc">
-                    <Icon:PackIconMaterial Kind="Cog"/>
-                </Button>
-
-                <Button Style="{StaticResource topButton}" Margin="0 0 55 0" HorizontalAlignment="Right">
-                    <Icon:PackIconMaterial Kind="Bell"/>
-                </Button>
-
-                <!--Page title-->
-                <TextBlock Text="Members" Grid.Row="1" FontSize="32" FontWeight="SemiBold" Margin="0 20 0 0" HorizontalAlignment="Left" Foreground="#121518"/>
-
-                <!--Add button-->
-                <Button Style="{StaticResource addButton}">
-                    <StackPanel Orientation="Horizontal">
-                        <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 1 8 0"/>
-                        <TextBlock Text="Add new member"/>
-                    </StackPanel>
-                </Button>
-
-                <Separator Height="1" Grid.Row="3" Background="#dae2ea" Margin="0 -1 0 10"/>
-
-                <!--Tab buttons-->
-                <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="0 10 0 0">
-                    <Button Content="Club staff" Style="{StaticResource tabButton}" BorderBrush="#784ff2"/>
-                    <Button Content="Players" Style="{StaticResource tabButton}"/>
-                    <Button Content="Archived" Style="{StaticResource tabButton}"/>
+                    <Button x:Name="btnMinimize"
+                                Style="{StaticResource controlButton}"
+                                Tag="{StaticResource secondarySolidColorBrush1}"
+                                Click="BtnMinimize_Click">
+                        <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
+                    </Button>
                 </StackPanel>
 
-                <!--Counter title-->
-                <TextBlock Text="68 Club Staff" Grid.Row="4" FontSize="18" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                <!-- Header / Título -->
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"/>
+                        <ColumnDefinition Width="1*"/>
+                    </Grid.ColumnDefinitions>
 
-                <TextBlock Text="Filter by" Grid.Row="4" FontSize="13" FontWeight="SemiBold" Foreground="#121518" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="0 0 215 0"/>
+                    <!-- Título -->
+                    <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center" Margin="20,0,0,0">
+                        <Icon:PackIconMaterial Kind="{Binding Icono.Kind}" Height="20" Width="20" Foreground="{StaticResource primarySolidColorBrush1}" Margin="0 0 15 0" VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding Titulo}" Foreground="{StaticResource primarySolidColorBrush1}" FontSize="32" FontWeight="SemiBold" HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                    </StackPanel>
 
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right" VerticalAlignment="Center">
+                        <!-- Opciones de usuario -->
+                        <Button Style="{StaticResource iconButton}" Tag="Red">
+                            <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}" />
+                        </Button>
 
-                <!--Filter textbox-->
-                <Grid Width="200" HorizontalAlignment="Right" Grid.Row="4">
-                    <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="#b0b9c6" IsHitTestVisible="False" Panel.ZIndex="1" Text="Search in Members..." Visibility="{Binding ElementName=txtSearch, Path=Text, Converter={StaticResource BooleanToVisibility}}"/>
+                        <Button Style="{StaticResource iconButton}" Tag="Red">
+                            <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}" />
+                        </Button>
 
-                    <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"/>
+                        <Button Style="{StaticResource iconButton}" Tag="Red">
+                            <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}" />
+                        </Button>
+
+                        <Grid VerticalAlignment="Center" Margin="20 0 20 0">
+                            <Grid.Effect>
+                                <!--Sombra de cada uno de los 3 puntillos-->
+                                <DropShadowEffect BlurRadius="1" ShadowDepth="1" Color="#FFACACAC"/>
+                            </Grid.Effect>
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Left">
+                                <materialDesign:PopupBox PlacementMode="BottomAndAlignRightEdges" StaysOpen="False">
+                                    <StackPanel Width="150">
+                                        <Button Click="MenuItemAjustes_Click" Content="Ajustes"/>
+                                        <Button Click="MenuItemAjustes_Click" Content="Mi cuenta"/>
+                                        <Button Click="MenuItemAjustes_Click" Content="Ayuda"/>
+                                        <Separator/>
+                                        <Button Click="MenuItemAjustes_Click" Content="Cerrar sesión"/>
+                                    </StackPanel>
+                                </materialDesign:PopupBox>
+                            </StackPanel>
+                        </Grid>
+                    </StackPanel>
                 </Grid>
 
-                <CheckBox Style="{DynamicResource CheckBoxStyle1}" Grid.Row="6" Content="Holas"/>
-
-                <!--Members Datagrid-->
-                <!--
-                    Este proyecto necesita mucha personalización de estilos de este DataGrid, para lo cual se generan copias de los estilos nativos:
-
-                    1. Click derecho en DataGrid visual > Editar plantillas adicionales > Editar RowStyle > Editar una copia
-                    2. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit ColumnHeaderStyle > Editar una copia
-                    3. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit CellStyle > Editar una copia
-                    4. Click derecho en DataGrid visual > Editar plantilla > Editar una copia
-
-                    En todos los casos, se deja todo como está en la ventanita que sale después de elegir la opción "Editar una copia", sólo se selecciona "Aplicación" en "Definir en". Cada vez que se hace esto se crean estilos en App.xaml.
-
-                    Quién sabe qué pasó la 1ra vez que hice esto, que después de agregar los estilos NO se imprimía en la vista el DataGridTextColumn. La solución fue eliminar todos los estilos generados al respecto y los volví a generar.
-                -->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" Grid.Row="5" x:Name="membersDatagGrid">
-
-                    <DataGrid.Columns>
-                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
-                            <DataGridCheckBoxColumn.HeaderTemplate>
-                                <DataTemplate>
-                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
-                                </DataTemplate>
-                            </DataGridCheckBoxColumn.HeaderTemplate>
-                        </DataGridCheckBoxColumn>
-
-                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
-
-                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="#000000">
-                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
-                                        </Border>
-                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-                        <DataGridTextColumn Header="Position" IsReadOnly="True" Width="*" Binding="{Binding Position}"/>
-                        <DataGridTextColumn Header="Email address" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
-                        <DataGridTextColumn Header="Phone number" IsReadOnly="True" Width="*" Binding="{Binding Phone}"/>
-
-                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
-                            <DataGridTemplateColumn.CellTemplate>
-                                <DataTemplate>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Button Style="{StaticResource gridEditButton}">
-                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
-                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
-                                        </Button>
-                                    </StackPanel>
-                                </DataTemplate>
-                            </DataGridTemplateColumn.CellTemplate>
-                        </DataGridTemplateColumn>
-
-
-
-                    </DataGrid.Columns>
-                </DataGrid>
-
-                <!--Pagination Section-->
-                <Border Grid.Row="6" HorizontalAlignment="Right" BorderBrush="#dee4ec" BorderThickness="1" CornerRadius="5" Padding="5" Background="White" Margin="0 10 10 10">
-                    <StackPanel Orientation="Horizontal">
-
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronLeft" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-
-                        <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="1"/>
-                        <Button Style="{StaticResource pagingButton}" Content="2" Background="#7950" Foreground="#ffffff"/>
-                        <Button Style="{StaticResource pagingButton}" Content="3"/>
-
-                        <TextBlock Text="..." Foreground="#6c7682" VerticalAlignment="Center" FontSize="15" Margin="10 0"/>
-
-                        <Button Style="{StaticResource pagingButton}" Content="7"/>
-                        <Button Style="{StaticResource pagingButton}" Content="8"/>
-                        <Button Style="{StaticResource pagingButton}" Content="9"/>
-
-                        <Rectangle Width="1" Fill="#dee4ec" Margin="3 7"/>
-
-                        <Button Style="{StaticResource pagingButton}">
-                            <Icon:PackIconMaterial Kind="ChevronRight" Style="{StaticResource pagingButtonIcon}"/>
-                        </Button>
-
-                    </StackPanel>
-                </Border>
+                <!-- CONTENIDO / Child views -->
+                <ContentControl Content="{Binding ModeloDeVista}" Grid.Row="2" Margin="25"></ContentControl>
 
             </Grid>
 

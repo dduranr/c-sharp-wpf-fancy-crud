@@ -1,4 +1,4 @@
-﻿using FontAwesome.Sharp;
+﻿using MahApps.Metro.IconPacks;
 using System.Windows.Input;
 using WPF_Fancy_CRUD.Db;
 using WPF_Fancy_CRUD.MVVM.Models;
@@ -18,7 +18,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         private UserModel _usuario = new UserModel { Id = 0, Usuario = "", Contrasena = "", Nombre = "", Apellido1 = "", Email = "", Rol = "" };
         private ViewModelBase _modeloDeVista = new HomeViewModel();
         private string _titulo = "";
-        private IconChar _icono;
+        private PackIconMaterial _icono = new PackIconMaterial();
 
         /// <summary>
         /// Propiedades públicas (Usuario, ModeloDeVista, Titulo e Icono)
@@ -54,7 +54,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
                 OnPropertyChanged(nameof(Titulo));
             }
         }
-        public IconChar Icono
+        public PackIconMaterial Icono
         {
             get => _icono;
             set
@@ -93,22 +93,22 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         private void ExecuteShowHomeViewCommand(object? obj)
         {
             ModeloDeVista = new HomeViewModel();
-            Titulo = "Dashboard";
-            Icono = IconChar.Home;
+            Titulo = "Home";
+            Icono.Kind = PackIconMaterialKind.HomeVariant;
         }
 
         private void ExecuteShowCustomerViewCommand(object obj)
         {
             ModeloDeVista = new CustomerViewModel();
             Titulo = "Clientes";
-            Icono = IconChar.UserGroup;
+            Icono.Kind = PackIconMaterialKind.Account;
         }
 
         private void ExecuteShowUserViewCommand(object obj)
         {
             ModeloDeVista = new UserViewModel();
             Titulo = "Usuarios";
-            Icono = IconChar.UsersGear;
+            Icono.Kind = PackIconMaterialKind.AccountMultipleOutline;
         }
 
         private void LoadCurrentUserData()
