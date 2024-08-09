@@ -1,6 +1,4 @@
-﻿using System.Collections.ObjectModel;
-using System.Windows.Controls;
-using System.Windows.Media;
+﻿using System.Windows.Controls;
 
 namespace WPF_Fancy_CRUD.MVVM.Views
 {
