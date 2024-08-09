@@ -86,7 +86,6 @@
                     <TextBlock Text="LOG IN"
                            Foreground="DarkGray"
                            FontSize="10"
-                           FontFamily="Montserrat"
                            Grid.Column="0"
                            VerticalAlignment="Center"
                            Margin="10,0,0,0"/>
@@ -96,7 +95,6 @@
                         Content="-"
                         Foreground="White"
                         FontSize="16"
-                        FontFamily="Montserrat"
                         Cursor="Hand"
                         Grid.Column="1"
                         Click="BtnMinimize_Click">
@@ -130,7 +128,6 @@
                         Content="x"
                         Foreground="White"
                         FontSize="12"
-                        FontFamily="Montserrat"
                         Cursor="Hand"
                         Grid.Column="2"
                         Click="BtnClose_Click">
@@ -172,13 +169,11 @@
                                Foreground="White"
                                FontSize="25"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
                                HorizontalAlignment="Center"/>
                     <TextBlock Text="Lorem ipsum dolor sit amet"
                                Foreground="LightGray"
                                FontSize="12"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
                                TextWrapping="Wrap"
                                TextAlignment="center"
                                Margin="0,5,0,0"/>
@@ -186,7 +181,6 @@
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
                                Margin="0,35,0,0"/>
 
                     <!--
@@ -197,7 +191,6 @@
                              Text="{Binding Usuario, UpdateSourceTrigger=PropertyChanged}"
                              FontSize="13"
                              FontWeight="Medium"
-                             FontFamily="Montserrat"
                              Foreground="White"
                              CaretBrush="LightGray"
                              BorderBrush="DarkGray"
@@ -219,7 +212,6 @@
                                Foreground="DarkGray"
                                FontSize="12"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
                                Margin="0,15,0,0"/>
                     <!--
                         Salta error cuando se declara binding sobre un PasswordBox. Para ello a fuerza hay que crear un control personalizado.
@@ -243,10 +235,9 @@
                         Creamos un TextBlock que mostrará los posibles errores al iniciar sesión
                     -->
                     <TextBlock Text="{Binding MensajeError}"
-                               Foreground="{StaticResource secondarySolidColorBrush1}"
+                               Foreground="Red"
                                FontSize="12"
                                FontWeight="Medium"
-                               FontFamily="Montserrat"
                                Margin="0,10,0,0"
                                TextWrapping="Wrap"/>
 
@@ -256,7 +247,6 @@
                         Content="Iniciar sesión"
                         Foreground="White"
                         FontSize="12"
-                        FontFamily="Montserrat"
                         Cursor="Hand"
                         Margin="0,30,0,0">
                         <!--
@@ -292,13 +282,11 @@
                         <TextBlock Text="¿Olvidaste contraseña?"
                                    Foreground="DarkGray"
                                    FontSize="12"
-                                   FontWeight="Medium"
-                                   FontFamily="Montserrat"/>
+                                   FontWeight="Medium"/>
                         <TextBlock Text="Reset"
                                    Foreground="White"
                                    FontSize="12"
                                    FontWeight="Medium"
-                                   FontFamily="Montserrat"
                                    Cursor="Hand"
                                    Margin="8,0,0,0"/>
                     </StackPanel>

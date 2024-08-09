@@ -52,8 +52,14 @@ namespace WPF_Fancy_CRUD.MVVM.Views
         private void BtnMaximize_Click(object sender, RoutedEventArgs e)
         {
             if (this.WindowState == WindowState.Normal)
+            {
                 this.WindowState = WindowState.Maximized;
-            else this.WindowState = WindowState.Normal;
+                //btnClose.IsEnabled = false;
+            }
+            else
+            {
+                this.WindowState = WindowState.Normal;
+            }
         }
 
 

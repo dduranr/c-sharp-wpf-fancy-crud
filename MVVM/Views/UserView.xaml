@@ -1,33 +1,109 @@
 ﻿<UserControl x:Class="WPF_Fancy_CRUD.MVVM.Views.UserView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:WPF_Fancy_CRUD.MVVM.Views"
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:WPF_Fancy_CRUD.MVVM.Views" xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
+    <Border Style="{StaticResource mainBorder}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
 
-        <StackPanel Grid.Row="0"
-                    Orientation="Horizontal"
-                    FlowDirection="RightToLeft">
+            <Grid Grid.Row="0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-            <Button x:Name="btnCrear"
-                    Content="Crear"
-                    FontSize="20"
-                    Padding="10"/>
-        </StackPanel>
+                <StackPanel Grid.Column="0">
+                    <!--Espacio no ocupado de momento-->
+                </StackPanel>
 
-        <StackPanel Grid.Row="1"
-                    Orientation="Vertical">
+                <StackPanel Grid.Column="1">
+
+                    <Button x:Name="btnAgregar" Style="{StaticResource addButton}" Tag="Black">
+                        <StackPanel Orientation="Horizontal">
+                            <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 0 8 0"/>
+                            <TextBlock Text="Add new member"/>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Grid.Row="1">
 
 
-        </StackPanel>
-    </Grid>
-    
+                <!--Members Datagrid-->
+                <!--
+        Este proyecto necesita mucha personalización de estilos de este DataGrid, para lo cual se generan copias de los estilos nativos:
+
+        1. Click derecho en DataGrid visual > Editar plantillas adicionales > Editar RowStyle > Editar una copia
+        2. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit ColumnHeaderStyle > Editar una copia
+        3. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit CellStyle > Editar una copia
+        4. Click derecho en DataGrid visual > Editar plantilla > Editar una copia
+
+        En todos los casos, se deja todo como está en la ventanita que sale después de elegir la opción "Editar una copia", sólo se selecciona "Aplicación" en "Definir en". Cada vez que se hace esto se crean estilos en App.xaml.
+
+        Quién sabe qué pasó la 1ra vez que hice esto, que después de agregar los estilos NO se imprimía en la vista el DataGridTextColumn. La solución fue eliminar todos los estilos generados al respecto y los volví a generar.
+    -->
+                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="membersDatagGrid">
+
+                    <DataGrid.Columns>
+                        <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">
+                            <DataGridCheckBoxColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <CheckBox Style="{StaticResource CheckBoxStyle1}"/>
+                                </DataTemplate>
+                            </DataGridCheckBoxColumn.HeaderTemplate>
+                        </DataGridCheckBoxColumn>
+
+                        <DataGridTextColumn Header="#" IsReadOnly="True" CanUserResize="False" Width="auto" Binding="{Binding Number}"/>
+
+                        <DataGridTemplateColumn Header="Member" IsReadOnly="True" Width="*">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Border Width="25" Height="25" CornerRadius="50" Margin="0 0 10 0" Background="#000000">
+                                            <TextBlock Text="{Binding Character}" VerticalAlignment="Center" HorizontalAlignment="Center" Foreground="White" Margin="0 0 0 1"/>
+                                        </Border>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                        <DataGridTextColumn Header="Position" IsReadOnly="True" Width="*" Binding="{Binding Position}"/>
+                        <DataGridTextColumn Header="Email address" IsReadOnly="True" Width="*" Binding="{Binding Email}"/>
+                        <DataGridTextColumn Header="Phone number" IsReadOnly="True" Width="*" Binding="{Binding Phone}"/>
+
+                        <DataGridTemplateColumn Header="Operations" IsReadOnly="True" Width="auto">
+                            <DataGridTemplateColumn.CellTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Button Style="{StaticResource gridEditButton}">
+                                            <Icon:PackIconMaterial Kind="PencilOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                        <Button Style="{StaticResource gridRemoveButton}" Margin="5 0 0 0">
+                                            <Icon:PackIconMaterial Kind="DeleteOutline" Style="{StaticResource gridButtonIcon}"/>
+                                        </Button>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </DataGridTemplateColumn.CellTemplate>
+                        </DataGridTemplateColumn>
+
+                    </DataGrid.Columns>
+                </DataGrid>
+                
+                <!--Aquí va la paginación-->
+
+            </Grid>
+        </Grid>
+    </Border>
+
 </UserControl>

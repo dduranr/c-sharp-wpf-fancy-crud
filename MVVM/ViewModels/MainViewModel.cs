@@ -68,6 +68,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         public ICommand ShowHomeViewCommand { get; }
         public ICommand ShowCustomerViewCommand { get; }
         public ICommand ShowUserViewCommand { get; }
+        public ICommand ProductViewCommand { get; }
 
         /// <summary>
         /// Este es el modelo de vista de la home del aplicativo.
@@ -80,6 +81,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             ShowHomeViewCommand = new ViewModelCommand(ExecuteShowHomeViewCommand);
             ShowCustomerViewCommand = new ViewModelCommand(ExecuteShowCustomerViewCommand);
             ShowUserViewCommand = new ViewModelCommand(ExecuteShowUserViewCommand);
+            ProductViewCommand = new ViewModelCommand(ExecuteProductViewCommand);
 
             // Ejecutamos un comando, el que sea, con el fin de establecer una vista predeterminada
             ExecuteShowHomeViewCommand(null);
@@ -109,6 +111,13 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
             ModeloDeVista = new UserViewModel();
             Titulo = "Usuarios";
             Icono.Kind = PackIconMaterialKind.AccountMultipleOutline;
+        }
+
+        private void ExecuteProductViewCommand(object obj)
+        {
+            ModeloDeVista = new ProductViewModel();
+            Titulo = "Productos";
+            Icono.Kind = PackIconMaterialKind.CartOutline;
         }
 
         private void LoadCurrentUserData()

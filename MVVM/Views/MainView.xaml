@@ -6,7 +6,6 @@
         xmlns:local="clr-namespace:WPF_Fancy_CRUD.MVVM.Views"
         xmlns:viewModel="clr-namespace:WPF_Fancy_CRUD.MVVM.ViewModels"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:fa="http://schemas.awesome.incremented/wpf/xaml/fontawesome.sharp"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
         Title="MainWindowView" Height="700" Width="1300"
@@ -32,6 +31,9 @@
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:UserViewModel}">
             <local:UserView/>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
+            <local:ProductView/>
         </DataTemplate>
 
         <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
@@ -100,7 +102,7 @@
                                 </StackPanel>
                             </Button>
 
-                            <Button Style="{StaticResource menuButton}">
+                            <Button Style="{StaticResource menuButton}" Command="{Binding ProductViewCommand}">
                                 <StackPanel Orientation="Horizontal">
                                     <Icon:PackIconMaterial Kind="Cart" Style="{StaticResource menuButtonIcon}"/>
                                     <TextBlock Text="Productos"/>
@@ -147,21 +149,21 @@
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource secondarySolidColorBrush1}"
                                 Click="BtnClose_Click">
-                        <fa:IconImage Icon="Xmark" Style="{StaticResource controlButtonIcon}"/>
+                        <Icon:PackIconMaterial Kind="WindowClose" Style="{StaticResource controlButtonIcon}" />
                     </Button>
 
                     <Button x:Name="btnMaximize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource secondarySolidColorBrush1}"
                                 Click="BtnMaximize_Click">
-                        <fa:IconImage Icon="Square" Style="{StaticResource controlButtonIcon}"/>
+                        <Icon:PackIconMaterial Kind="WindowRestore" Style="{StaticResource controlButtonIcon}" />
                     </Button>
 
                     <Button x:Name="btnMinimize"
                                 Style="{StaticResource controlButton}"
                                 Tag="{StaticResource secondarySolidColorBrush1}"
                                 Click="BtnMinimize_Click">
-                        <fa:IconImage Icon="WindowMinimize" Width="12" Style="{StaticResource controlButtonIcon}"/>
+                        <Icon:PackIconMaterial Kind="WindowMinimize" Style="{StaticResource controlButtonIcon}" />
                     </Button>
                 </StackPanel>
 
@@ -181,15 +183,15 @@
                     <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Right" VerticalAlignment="Center">
                         <!-- Opciones de usuario -->
                         <Button Style="{StaticResource iconButton}" Tag="Red">
-                            <fa:IconImage Icon="Clock" Style="{StaticResource iconButtonIcon}" />
+                            <Icon:PackIconMaterial Kind="ClockOutline" Style="{StaticResource iconButtonIcon}" />
                         </Button>
 
                         <Button Style="{StaticResource iconButton}" Tag="Red">
-                            <fa:IconImage Icon="Envelope" Style="{StaticResource iconButtonIcon}" />
+                            <Icon:PackIconMaterial Kind="MessageOutline" Style="{StaticResource iconButtonIcon}" />
                         </Button>
 
                         <Button Style="{StaticResource iconButton}" Tag="Red">
-                            <fa:IconImage Icon="Bell" Style="{StaticResource iconButtonIcon}" />
+                            <Icon:PackIconMaterial Kind="BellOutline" Style="{StaticResource iconButtonIcon}" />
                         </Button>
 
                         <Grid VerticalAlignment="Center" Margin="20 0 20 0">

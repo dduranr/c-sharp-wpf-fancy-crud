@@ -1,11 +1,9 @@
-﻿using System.Windows;
+﻿using System.Diagnostics;
+using System.Windows;
 using System.Windows.Input;
 
 namespace WPF_Fancy_CRUD.MVVM.Views
 {
-    /// <summary>
-    /// Lógica de interacción para LoginView.xaml
-    /// </summary>
     /// <summary>
     /// Lógica de interacción para LoginView.xaml
     /// </summary>
@@ -48,6 +46,7 @@ namespace WPF_Fancy_CRUD.MVVM.Views
         {
             if (e.Key == Key.Enter)
             {
+                Trace.WriteLine("Se ha dado enter en alguno de los campos del formulario");
                 if (btnLogin.Command != null && btnLogin.Command.CanExecute(null))
                 {
                     btnLogin.Command.Execute(null);

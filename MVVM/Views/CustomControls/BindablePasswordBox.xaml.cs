@@ -7,9 +7,6 @@ namespace WPF_Fancy_CRUD.MVVM.Views.CustomControls
     /// <summary>
     /// Lógica de interacción para BindablePasswordBox.xaml
     /// </summary>
-    /// <summary>
-    /// Lógica de interacción para BindablePasswordBox.xaml
-    /// </summary>
     public partial class BindablePasswordBox : UserControl
     {
         // Se registra la propiedad PasswordProperty como propiedad de dependencia. El 1er argumento de "Register" es el nombre de la propiedad del LoginViewModel. El 2do param es el tipo de datos de dicha propiedad. eL 3er argumento es el tipo de datos del propietario de la propiedad, que es el nombre de la presente clase

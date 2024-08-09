@@ -57,6 +57,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// Algo pasa con este método que al parecer parameter SIEMPRE es null, y aún así ejecuta el comando que se pasa mediante parameter. Por ejemplo, en LoginViewModel.cs está esta línea:
         ///     LoginCommand = new ViewModelCommand(ExecuteLoginCommand, CanExecuteLoginCommand);
         /// Cuando intento iniciar sesión con credenciales correctas e incorrectas, en cualquier caso el parameter es null. Lo raro es que funciona el login.
+        /// Importante: si se hace la validación para que sólo se ejecute parameter cuando NO es null, dejan de funcionar los comandos, el más evidente, el del inicio de sesión.
         /// </summary>
 
         //public void Execute(object parameter)

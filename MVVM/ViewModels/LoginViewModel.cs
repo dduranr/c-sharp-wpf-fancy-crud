@@ -1,4 +1,5 @@
-﻿using System.Net;
+﻿using System.Diagnostics;
+using System.Net;
 using System.Security;
 using System.Security.Principal;
 using System.Windows.Input;
@@ -85,15 +86,18 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         /// <param name="obj"></param>
         private void ExecuteLoginCommand(object obj)
         {
+            Trace.WriteLine("Se lee 1");
             var isValidUser = iDbUser.AuthenticateUser(new NetworkCredential(Usuario, Contrasena));
             // Si el usuario es válido vamos a registrar y guardar el nombre de usuario para después mostrar sus datos en la vista principal. Para esto se usará la propiedad Thread.CurrentPrincipal. Ésta permite establecer la identidad del usuario que ejecuta el subproceso actual. El 2do argumento de GenericPrincipal es para trabajar los roles. Es decir, en Thread.CurrentPrincipal se guarda el usuario de quien inicia sesión, ya con ese dato guardado en memoria, más adelante se podrá recuperar de la BD la info del usuario logueado, por ejemplo en el método LoadCurrentUserData de MainViewModel.
             if (isValidUser)
             {
+                Trace.WriteLine("Credenciales ok");
                 Thread.CurrentPrincipal = new GenericPrincipal(new GenericIdentity(Usuario), null);
                 VistaEsVisible = false;
             }
             else
             {
+                Trace.WriteLine("Credenciales x");
                 MensajeError = "* El usuario y/o contraseña no son válidos.";
             }
         }
@@ -101,6 +105,7 @@ namespace WPF_Fancy_CRUD.MVVM.ViewModels
         // Delegados. Estos métodos son los que se delegan a los comandos. El argumento "object obj" es opcional.
         private bool CanExecuteLoginCommand(object obj)
         {
+            Trace.WriteLine("Se lee 2");
             if (string.IsNullOrWhiteSpace(Usuario) || Usuario.Length < 3 || Contrasena == null || Contrasena.Length < 3)
             {
                 return false;
