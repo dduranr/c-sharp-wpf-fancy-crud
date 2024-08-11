@@ -1,0 +1,11 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+
+
+    <!--
+        BooleanToVisibilityConverter es una clase nativa de c# que representa al convertidor que convierte valores booleanos hacia y desde valores de enumeración de Visibility. En pocas palabras, en estas líneas creamos un convertidor llamado BooleanToVisibility que convierte valores Bool a Visibility.
+    -->
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
+
+</ResourceDictionary>

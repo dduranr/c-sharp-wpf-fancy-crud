@@ -4,17 +4,7 @@
     <!--Este estilo aplica a todas las etiquetas Border que fungen como la etiqueta principal del área donde se pone contenido dentro del MainView.xaml. -->
     <Style x:Key="mainBorder" TargetType="Border">
         <Setter Property="Background" Value="{DynamicResource whiteSolidColorBrush1}"/>
-        <Setter Property="Padding" Value="20"/>
-
-        <Style.Triggers>
-            <Trigger Property="Tag" Value="Azul">
-                <Setter Property="Background" Value="Blue"/>
-            </Trigger>
-            <Trigger Property="Tag" Value="Verde">
-                <Setter Property="Background" Value="Green"/>
-            </Trigger>
-        </Style.Triggers>
-
+        <Setter Property="Padding" Value="0"/>
     </Style>
     
 </ResourceDictionary>

@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:local2="clr-namespace:WPF_Fancy_CRUD.Misc"
              xmlns:local="clr-namespace:WPF_Fancy_CRUD.MVVM.Views"
              xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
              mc:Ignorable="d"
@@ -23,43 +22,38 @@
                 </Grid.ColumnDefinitions>
 
                 <StackPanel Grid.Column="0">
-                    <!--Espacio no ocupado de momento-->
+                    <!--<Grid Width="200" HorizontalAlignment="Left">
+                        <TextBlock Margin="15 0" VerticalAlignment="Center" Foreground="{StaticResource graySolidColorBrush1}" IsHitTestVisible="False" Panel.ZIndex="1" Text="Buscar en usuarios..." Visibility="{Binding ElementName=txtSearch, Path=Text, Converter={StaticResource BooleanToVisibility}}"/>
+                        <TextBox x:Name="txtFilter" Style="{StaticResource textboxFilter}"/>
+                    </Grid>-->
                 </StackPanel>
 
                 <StackPanel Grid.Column="1">
-                    <!--
-                        Tag             = Background
-                        BorderBrush     = Foreground
-                        Background      = Background hover
-                        ToolTip         = Foreground hover
-                    -->
-                    <Button Style="{DynamicResource ButtonStyle1}" x:Name="btnAgregar" Tag="Black" BorderBrush="White" Background="White" ToolTip="Black">
+                    <!--<Button Style="{DynamicResource ButtonStyle1}" x:Name="btnAgregar" Tag="{StaticResource secondarySolidColorBrush1}" BorderBrush="White" Background="{StaticResource secondarySolidColorBrush2}" ToolTip="White">
                         <StackPanel Orientation="Horizontal">
                             <Icon:PackIconMaterial Kind="Plus" VerticalAlignment="Center" Width="11" Height="11" Margin="0 0 8 0"/>
                             <TextBlock Text="Add new member"/>
                         </StackPanel>
-                    </Button>
-
+                    </Button>-->
                 </StackPanel>
             </Grid>
 
             <Grid Grid.Row="1">
 
-
                 <!--Members Datagrid-->
                 <!--
-        Este proyecto necesita mucha personalización de estilos de este DataGrid, para lo cual se generan copias de los estilos nativos:
+                    Este proyecto necesita mucha personalización de estilos de este DataGrid, para lo cual se generan copias de los estilos nativos:
 
-        1. Click derecho en DataGrid visual > Editar plantillas adicionales > Editar RowStyle > Editar una copia
-        2. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit ColumnHeaderStyle > Editar una copia
-        3. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit CellStyle > Editar una copia
-        4. Click derecho en DataGrid visual > Editar plantilla > Editar una copia
+                    1. Click derecho en DataGrid visual > Editar plantillas adicionales > Editar RowStyle > Editar una copia
+                    2. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit ColumnHeaderStyle > Editar una copia
+                    3. Click derecho en DataGrid visual > Editar plantillas adicionales > Edit CellStyle > Editar una copia
+                    4. Click derecho en DataGrid visual > Editar plantilla > Editar una copia
 
-        En todos los casos, se deja todo como está en la ventanita que sale después de elegir la opción "Editar una copia", sólo se selecciona "Aplicación" en "Definir en". Cada vez que se hace esto se crean estilos en App.xaml.
+                    En todos los casos, se deja todo como está en la ventanita que sale después de elegir la opción "Editar una copia", sólo se selecciona "Aplicación" en "Definir en". Cada vez que se hace esto se crean estilos en App.xaml.
 
-        Quién sabe qué pasó la 1ra vez que hice esto, que después de agregar los estilos NO se imprimía en la vista el DataGridTextColumn. La solución fue eliminar todos los estilos generados al respecto y los volví a generar.
-    -->
-                <DataGrid Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}" x:Name="membersDatagGrid">
+                    Quién sabe qué pasó la 1ra vez que hice esto, que después de agregar los estilos NO se imprimía en la vista el DataGridTextColumn. La solución fue eliminar todos los estilos generados al respecto y los volví a generar.
+                -->
+                <DataGrid x:Name="membersDatagGrid" Style="{DynamicResource DataGridStyle1}" CellStyle="{DynamicResource DataGridCellStyle1}" ColumnHeaderStyle="{DynamicResource DataGridColumnHeaderStyle1}" RowStyle="{DynamicResource DataGridRowStyle1}">
 
                     <DataGrid.Columns>
                         <DataGridCheckBoxColumn CanUserResize="False" Width="auto" ElementStyle="{StaticResource CheckBoxStyle1}">

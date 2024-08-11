@@ -9,6 +9,10 @@
     <Color x:Key="whiteColor1">#eff2f7</Color>
     <Color x:Key="whiteColor2">#d5cff5</Color>
     <Color x:Key="grayColor1">#555555</Color>
+    <Color x:Key="greenColor1">#008700</Color>
+    <Color x:Key="greenColor2">#007000</Color>
+    <Color x:Key="redColor1">#d32f2f</Color>
+    <Color x:Key="redColor2">#b71c1c</Color>
 
     <!-- SolidColorBrush -->
     <SolidColorBrush x:Key="primarySolidColorBrush1" Color="#2b1275"/>
@@ -18,5 +22,10 @@
     <SolidColorBrush x:Key="whiteSolidColorBrush1" Color="#eff2f7"/>
     <SolidColorBrush x:Key="whiteSolidColorBrush2" Color="#d5cff5"/>
     <SolidColorBrush x:Key="graySolidColorBrush1" Color="#555555"/>
+    <SolidColorBrush x:Key="greenSolidColorBrush1" Color="#008700"/>
+    <SolidColorBrush x:Key="greenSolidColorBrush2" Color="#007000"/>
+    <SolidColorBrush x:Key="redSolidColorBrush1" Color="#d32f2f"/>
+    <SolidColorBrush x:Key="redSolidColorBrush2" Color="#b71c1c"/>
 
 </ResourceDictionary>
+    

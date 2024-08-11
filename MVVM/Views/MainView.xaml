@@ -35,8 +35,6 @@
         <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
             <local:ProductView/>
         </DataTemplate>
-
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
     </Window.Resources>
 
     <Border Background="{StaticResource whiteSolidColorBrush1}" CornerRadius="30" MouseDown="Border_MouseDown" MouseLeftButtonDown="Border_MouseLeftButtonDown">

@@ -5,7 +5,9 @@
 
 
     <!--
-        A continuación listo las propiedades del Button que se usan en este estilo para que desde la vista XAML se establezcan los colores de background y foreground normal y en hover. De buena gana intenté usar la propiedad Foreground para establecer el color del texto, pero es tan extrema esta propiedad que el color que se define en esa propiedad se establece a fuerza como el color del foreground normal y en hover, por eso no la utilizo en este estilo.
+        ButtonStyle1
+    
+        A continuación listo las propiedades del Button que se usan en este estilo para que desde la vista XAML se establezcan los colores de background y foreground normal y en hover. De buena gana intenté usar la propiedad Foreground para establecer el color del texto, pero es tan extrema esta propiedad que el color que se define en ella se establece a fuerza como el color del foreground normal y en hover, por eso no la utilizo.
     
         Tag             = Background
         BorderBrush     = Foreground
@@ -159,12 +161,12 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#4000ff"/>
+                <Setter Property="Background" Value="{DynamicResource secondarySolidColorBrush1}"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
                 <Setter Property="Cursor" Value="Hand"/>
             </Trigger>
             <Trigger Property="IsFocused" Value="True">
-                <Setter Property="Background" Value="#4000ff"/>
+                <Setter Property="Background" Value="{DynamicResource secondarySolidColorBrush1}"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
         </Style.Triggers>
@@ -182,44 +184,10 @@
 
 
 
-    <!--addButton-->
-    <!--<Style x:Key="addButton" TargetType="Button">
-        <Setter Property="Background" Value="Red"/>
-        <Setter Property="Foreground" Value="#ffffff"/>
-        <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Width" Value="150"/>
-        <Setter Property="Height" Value="35"/>
-        <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="FontSize" Value="13"/>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="Button">
-                    <Border Background="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=Tag}" CornerRadius="7">
-                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-
-        <Style.Triggers>
-            <Trigger Property="IsMouseOver" Value="True">
-                -->
-    <!--<Setter Property="Background" Value="{DynamicResource secondarySolidColorBrush2}"/>-->
-    <!--
-                <Setter Property="Background" Value="Red"/>
-                <Setter Property="Foreground" Value="Yellow"/>
-            </Trigger>
-        </Style.Triggers>
-    </Style>-->
-
-
-
-
-
     <!--pagingButton-->
     <Style x:Key="pagingButton" TargetType="Button">
         <Setter Property="Background" Value="Transparent"/>
-        <Setter Property="Foreground" Value="#6c7682"/>
+        <Setter Property="Foreground" Value="Red"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="FontSize" Value="13"/>
         <Setter Property="Margin" Value="1 0"/>
@@ -235,7 +203,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#7950f2"/>
+                <Setter Property="Background" Value="Red"/>
                 <Setter Property="Foreground" Value="#ffffff"/>
             </Trigger>
         </Style.Triggers>
@@ -254,11 +222,12 @@
 
     <!--gridEditButton-->
     <Style x:Key="gridEditButton" TargetType="Button">
-        <Setter Property="Background" Value="#512da8"/>
-        <Setter Property="BorderBrush" Value="#4a418e"/>
-        <Setter Property="Foreground" Value="#ffffff"/>
+        <Setter Property="Background" Value="{DynamicResource greenSolidColorBrush1}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource greenSolidColorBrush2}"/>
+        <Setter Property="Foreground" Value="White"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
         <Setter Property="VerticalAlignment" Value="Center"/>
+
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
@@ -271,7 +240,7 @@
 
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#673ab7"/>
+                <Setter Property="Background" Value="{DynamicResource greenSolidColorBrush2}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -280,15 +249,19 @@
 
     <!--gridRemoveButton-->
     <Style x:Key="gridRemoveButton" TargetType="Button" BasedOn="{StaticResource gridEditButton}">
-        <Setter Property="Background" Value="#d32f2f"/>
-        <Setter Property="BorderBrush" Value="#b71c1c"/>
+        <Setter Property="Background" Value="{DynamicResource redSolidColorBrush1}"/>
+        <Setter Property="BorderBrush" Value="{DynamicResource redSolidColorBrush2}"/>
+
         <Style.Triggers>
             <Trigger Property="IsMouseOver" Value="True">
-                <Setter Property="Background" Value="#f44336"/>
+                <Setter Property="Background" Value="{DynamicResource redSolidColorBrush2}"/>
             </Trigger>
         </Style.Triggers>
     </Style>
 
+
+
+    <!--gridButtonIcon-->
     <Style x:Key="gridButtonIcon" TargetType="Icon:PackIconMaterial">
         <Setter Property="Width" Value="12"/>
         <Setter Property="Height" Value="12"/>

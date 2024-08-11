@@ -21,11 +21,6 @@
         <viewModel:LoginViewModel/>
     </Window.DataContext>
 
-    <!-- BooleanToVisibilityConverter es una clase nativa de c# que representa al convertidor que convierte valores booleanos hacia y desde valores de enumeración de Visibility. El ID que se da (o sea el Key) puede ser el que sea. En pocas palabras, en estas líneas creamos un convertidor llamado BooleanToVisibility que convierte valores Bool a Visibility. -->
-    <Window.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibility"/>
-    </Window.Resources>
-
     <!-- Se vinculan las propiedades de vista a las propiedades del modelo de vista. -->
     <!-- Por ejemplo, la propiedad de visibilidad de la ventana de login dependerá de la propiedad VistaEsVisible del LoginViewModel, ya que si el inicio de sesión es exitoso debemos ocultar esta vista. En este caso específico se necesita un convertidor de tipos, ya que VistaEsVisible es un bool, y la propiedad Visibility de la ventana es tipo Visibilidad, para lo cual se convierte el boleano a visibility mediante BooleanToVisibility -->
     <Window.Visibility>

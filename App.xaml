@@ -26,6 +26,7 @@
                 <ResourceDictionary Source="Assets/Styles/ColorStyles.xaml"/>
                 <ResourceDictionary Source="Assets/Styles/DatagridStyles.xaml"/>
                 <ResourceDictionary Source="Assets/Styles/TextboxStyles.xaml"/>
+                <ResourceDictionary Source="Assets/Misc/Convertidores.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
 
