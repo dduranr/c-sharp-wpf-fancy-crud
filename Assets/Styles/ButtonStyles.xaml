@@ -15,12 +15,13 @@
         ToolTip         = Foreground hover
     -->
     <Style x:Key="ButtonStyle1" TargetType="{x:Type Button}">
+        <Setter Property="Cursor" Value="Hand"/>
         <Setter Property="Foreground" Value="{Binding Path=BorderBrush, RelativeSource={RelativeSource Self }}"/>
         <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-        <Setter Property="Width" Value="150"/>
-        <Setter Property="Height" Value="35"/>
+        <Setter Property="Width" Value="200"/>
+        <Setter Property="Height" Value="50"/>
         <Setter Property="HorizontalAlignment" Value="Right"/>
-        <Setter Property="FontSize" Value="13"/>
+        <Setter Property="FontSize" Value="20"/>
         <Setter Property="BorderThickness" Value="1"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>

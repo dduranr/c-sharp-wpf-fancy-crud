@@ -4,6 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WPF_Fancy_CRUD.MVVM.Views"
+        xmlns:local2="clr-namespace:WPF_Fancy_CRUD.MVVM.Views.User"
         xmlns:viewModel="clr-namespace:WPF_Fancy_CRUD.MVVM.ViewModels"
         xmlns:Icon="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
@@ -30,7 +31,7 @@
             <local:CustomerView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:UserViewModel}">
-            <local:UserView/>
+            <local2:UserView/>
         </DataTemplate>
         <DataTemplate DataType="{x:Type viewModel:ProductViewModel}">
             <local:ProductView/>

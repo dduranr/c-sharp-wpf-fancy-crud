@@ -2,7 +2,7 @@
 using System.Windows.Controls;
 using System.Windows.Media;
 
-namespace WPF_Fancy_CRUD.MVVM.Views
+namespace WPF_Fancy_CRUD.MVVM.Views.User
 {
     /// <summary>
     /// Lógica de interacción para UserView.xaml
@@ -19,7 +19,7 @@ namespace WPF_Fancy_CRUD.MVVM.Views
 
 
             // Create datagrid items info
-            members.Add(new Member { Number = "1", Character = "A", Name = "Parménides", Position = "Administrador", Email = "parménides@gmail.com", Phone = "5551895555" });
+            members.Add(new Member { Number = "1", Character = "A", Name = "Parménides 3", Position = "Administrador", Email = "parménides@gmail.com", Phone = "5551895555" });
             members.Add(new Member { Number = "2", Character = "B", Name = "Heráclito", Position = "Editor", Email = "heráclito@gmail.com", Phone = "5551895512" });
             members.Add(new Member { Number = "3", Character = "C", Name = "Anaxágoras", Position = "Staff", Email = "anaxágoras@gmail.com", Phone = "5551895544" });
             members.Add(new Member { Number = "4", Character = "D", Name = "Anaxímenes", Position = "Staff", Email = "anaxímenes@gmail.com", Phone = "5551895598" });
@@ -55,9 +55,7 @@ namespace WPF_Fancy_CRUD.MVVM.Views
             membersDatagGrid.ItemsSource = members;
 
         }
-
     }
-
 
     public class Member
     {
